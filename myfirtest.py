@@ -46,16 +46,21 @@ class mytest(unittest.TestCase):
             print 'failed'
             pass
 
+    # 退出
     def test_logout(self):
+        # 打开左侧栏
         swipe.swipRight(500)
         sleep(3)
+        # 点击设置,菜单还是用find_element_by_xpath比较好
         setup.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[6]/android.widget.TextView').click()
         # setup.driver.find_element_by_id('com.qianjinjin.android:id/itemDesc').click()
         sleep(3)
+        # 点击退出按钮
         setup.driver.find_element_by_id('com.qianjinjin.android:id/logoutBtn').click()
         sleep(3)
-        # setup.driver.find_element_by_id('com.qianjinjin.android:id/actionBtn').click()
-        # sleep(3)
+        # 点击确认
+        setup.driver.find_element_by_id('com.qianjinjin.android:id/confirm_btn').click()
+        sleep(3)
 
 if __name__ == "__main__":
     # 此用法可以同时测试多个类
