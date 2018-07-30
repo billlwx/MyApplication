@@ -2,12 +2,12 @@
 # _*_ coding: utf-8 _*_
 # __author__ = 'bill'
 # create on 2018/7/27
+import ConfigParser
 import unittest
 from time import sleep
 
 import setup
 import swipe
-
 
 class mytest(unittest.TestCase):
     # 进入欢迎页面
@@ -30,19 +30,25 @@ class mytest(unittest.TestCase):
         sleep(3)
         # 点击登录组件
         setup.driver.find_element_by_id('com.qianjinjin.android:id/gotologin_tv').click()
-        # 输入账户密码
-        setup.driver.find_element_by_id('com.qianjinjin.android:id/mobileInput').send_keys('******')
+        # 读取配置文件
+        conf = ConfigParser.SafeConfigParser()
+        conf.read("user.ini")
+        # 输入账户密码登录
+        setup.driver.find_element_by_id('com.qianjinjin.android:id/mobileInput').send_keys(conf.get("user", "phone"))
         sleep(3)
-        setup.driver.find_element_by_id('com.qianjinjin.android:id/pwdInput').send_keys('t11111')
-        # setup.driver.find_element_by_id('com.qianjinjin.android:id/loginBtn').click()
-        # sleep(3)
-        # try:
-        #     setup.driver.find_element_by_id('com.qianjinjin.android:id/msg_adv_close').click()
-        # except:
-        #     print 'failed'
-        #     pass
-        # swipe.swipRight(500)
-        # sleep(3)
+        setup.driver.find_element_by_id('com.qianjinjin.android:id/pwdInput').send_keys(conf.get("user", "password"))
+        setup.driver.find_element_by_id('com.qianjinjin.android:id/loginBtn').click()
+        sleep(3)
+        # 可能如果没有广告，需要 try 一下
+        try:
+            setup.driver.find_element_by_id('com.qianjinjin.android:id/msg_adv_close').click()
+        except:
+            print 'failed'
+            pass
+
+    def test_login(self):
+        swipe.swipRight(500)
+        sleep(3)
         # setup.driver.find_element_by_id('com.qianjinjin.android:id/itemDesc').click()
         # sleep(3)
         # setup.driver.find_element_by_id('com.qianjinjin.android:id/logoutBtn').click()
