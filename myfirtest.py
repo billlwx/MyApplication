@@ -46,13 +46,14 @@ class mytest(unittest.TestCase):
             print 'failed'
             pass
 
-    def test_login(self):
+    def test_logout(self):
         swipe.swipRight(500)
         sleep(3)
+        setup.driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[6]/android.widget.TextView').click()
         # setup.driver.find_element_by_id('com.qianjinjin.android:id/itemDesc').click()
-        # sleep(3)
-        # setup.driver.find_element_by_id('com.qianjinjin.android:id/logoutBtn').click()
-        # sleep(3)
+        sleep(3)
+        setup.driver.find_element_by_id('com.qianjinjin.android:id/logoutBtn').click()
+        sleep(3)
         # setup.driver.find_element_by_id('com.qianjinjin.android:id/actionBtn').click()
         # sleep(3)
 
@@ -61,5 +62,6 @@ if __name__ == "__main__":
     suite = unittest.TestSuite()
     suite.addTest(mytest("test_welcome"))
     suite.addTest(mytest("test_login"))
+    suite.addTest(mytest("test_logout"))
     runner = unittest.TextTestRunner()
     runner.run(suite)
