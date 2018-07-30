@@ -7,9 +7,9 @@
 import os, time
 from appium import webdriver
 
-PATH = lambda p: os.path.abspath(
-    os.path.join(os.path.dirname(__file__), p)
-)
+# PATH = lambda p: os.path.abspath(
+#     os.path.join(os.path.dirname(__file__), p)
+# )
 
 desired_caps = {}
 desired_caps['platformName'] = 'Android'
@@ -23,4 +23,4 @@ desired_caps['appPackage'] = 'com.qianjinjin.android'
 desired_caps['appActivity'] = 'com.haohan.android.qdd.ui.activity.SplashActivity'
 # 若端口未变，则为固定代码
 driver = webdriver.Remote("http://localhost:4723/wd/hub", desired_caps)
-time.sleep(10)
+time.sleep(3)
