@@ -15,6 +15,7 @@ from appium import webdriver
 conf = ConfigParser.SafeConfigParser()
 conf.read("phone.ini")
 desired_caps = {}
+# 设置 APP 平台
 desired_caps['platformName'] = conf.get("samsung", "platformName")
 # 当前设备的版本号
 desired_caps['platformVersion'] = conf.get("samsung", "platformVersion")
@@ -28,4 +29,3 @@ desired_caps['appActivity'] = conf.get("samsung", "appActivity")
 desired_caps['noReset'] = conf.get("samsung", "noReset")
 # 若端口未变，则为固定代码
 driver = webdriver.Remote(conf.get("samsung", "driverurl"), desired_caps)
-time.sleep(3)
